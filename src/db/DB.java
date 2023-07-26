@@ -9,19 +9,19 @@ import java.util.Properties;
 
 public class DB {
 	
-	private static Connection conn =  null;
+	public static Connection conn = null;
 	
 	public static Connection getConnection() {
 		if(conn == null) {
 			try {
-				Properties props = loadProperties();
+				Properties props = new Properties();
 				String url = props.getProperty("dburl");
-				conn = DriverManager.getConnection(url,props);
-			}
-			catch(SQLException e) {
+				conn = DriverManager.getConnection(url, props);
+			}catch(SQLException e) {
 				throw new DbException(e.getMessage());
 			}
 		}
+		
 		return conn;
 	}
 	
@@ -33,17 +33,16 @@ public class DB {
 			catch(SQLException e) {
 				throw new DbException(e.getMessage());
 			}
-			
 		}
 	}
 	
+	
 	private static Properties loadProperties() {
 		try(FileInputStream fs = new FileInputStream("db.properties")){
-			Properties pros = new Properties();
-			pros.load(fs);
-			return pros;
-		}
-		catch(IOException e) {
+			Properties pro = new Properties();
+			pro.load(fs);
+			return pro;
+		}catch(IOException e) {
 			throw new DbException(e.getMessage());
 		}
 	}
