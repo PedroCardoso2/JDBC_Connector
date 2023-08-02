@@ -16,6 +16,8 @@ public class Program {
 		
 		System.out.println(seller);
 		
+		System.out.println("\n ==== TESTE TWO: findByDepartment ===");
+		
 		
 	}
 }
